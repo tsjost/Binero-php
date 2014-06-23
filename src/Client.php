@@ -32,6 +32,24 @@ class Client
 		}
 	}
 
+	public function getDomainList($search = '', $page = 1)
+	{
+		$ret = $this->call('api/Domains/GetDomainList', Connector::GET, array(
+			'search' => $search,
+			'page'   => $page,
+		));
+
+		if ( ! isset($ret['Items'])) {
+			throw new BineroException($this->getErrorString($ret));
+		}
+
+		foreach ($ret['Items'] as &$Item) {
+			$Item = ClassCaster::Cast($Item, 'Domain');
+		}
+
+		return ClassCaster::Cast($ret, 'DomainListResponse');
+	}
+
 	private function call($method_name, $http_method, array $params)
 	{
 		return $this->Connector->call($method_name, $http_method, $params);

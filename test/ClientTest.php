@@ -61,4 +61,67 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 		$this->assertFalse($ret['success']);
 		$this->assertEquals('The user name or password is incorrect. (invalid_grant)', $ret['message']);
 	}
+
+	public function testGetDomainList()
+	{
+		$this->ConnectorMock->expects($this->once())
+			->method('call')
+			->with('api/Domains/GetDomainList', Binero\Connector::GET, array('search' => '', 'page' => 1))
+			->will($this->returnValue(array(
+				'Total' => 4,
+				'Page' => 1,
+				'PageSize' => 25,
+				'Items' => array(
+					0 => array(
+						'DomainName' => 'php.se',
+						'ExpireDate' => '2015-03-22T00:00:00',
+						'IsActive' => true,
+						'ExpireDateShortString' => '2015-03-22',
+					),
+					1 => array(
+						'DomainName' => 'binero.se',
+						'ExpireDate' => '2014-04-14T00:00:00',
+						'IsActive' => false,
+						'ExpireDateShortString' => '2014-04-14',
+					),
+					2 => array(
+						'DomainName' => 'wn.se',
+						'ExpireDate' => '2014-09-28T00:00:00',
+						'IsActive' => true,
+						'ExpireDateShortString' => '2014-09-28',
+					),
+					3 => array(
+						'DomainName' => 'git.se',
+						'ExpireDate' => '2014-10-28T00:00:00',
+						'IsActive' => true,
+						'ExpireDateShortString' => '2014-10-28',
+					),
+				),
+			)));
+
+		$ret = $this->Client->getDomainList();
+
+		$this->assertInstanceOf('brajox\\Binero\\DomainListResponse', $ret);
+		$this->assertEquals(4, $ret->getNumResults());
+
+		$Domains = $ret->getDomains();
+		$this->assertCount(4, $Domains);
+		$this->assertInstanceOf('brajox\\Binero\\Domain', $Domains[0]);
+		$this->assertEquals('php.se', $Domains[0]->getName());
+	}
+
+	/**
+	 * @expectedException brajox\Binero\BineroException
+	 */
+	public function testGetDomainListError()
+	{
+		$this->ConnectorMock->expects($this->once())
+			->method('call')
+			->will($this->returnValue(array(
+				'error' => 'random_error',
+				'error_description' => 'Some Random Error occured!',
+			)));
+
+		$this->Client->getDomainList();
+	}
 }
