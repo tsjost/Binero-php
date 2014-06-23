@@ -19,4 +19,25 @@ class Client
 	{
 		return $this->Connector->call($method_name, $http_method, $params);
 	}
+
+	private function getErrorString($json_ret)
+	{
+		$error_msg = 'Unknown';
+
+		if (isset($json_ret['error'])) {
+			if (isset($json_ret['error_description'])) {
+				$error_msg = $json_ret['error_description'] .' ('. $json_ret['error'] .')';
+			} else {
+				$error_msg = $json_ret['error'];
+			}
+		} else if (isset($json_ret['Message'])) {
+			if (isset($json_ret['MessageDetail'])) {
+				$error_msg = $json_ret['MessageDetail'] .' ('. $json_ret['Message'] .')';
+			} else {
+				$error_msg = $json_ret['Message'];
+			}
+		}
+
+		return $error_msg;
+	}
 }
