@@ -10,6 +10,11 @@ class Client
 		$this->Connector = $Connector;
 	}
 
+	public function setAuthToken($auth_token)
+	{
+		$this->Connector->setAuthToken($auth_token);
+	}
+
 	private function call($method_name, $http_method, array $params)
 	{
 		return $this->Connector->call($method_name, $http_method, $params);
