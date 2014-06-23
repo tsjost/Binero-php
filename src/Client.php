@@ -15,6 +15,23 @@ class Client
 		$this->Connector->setAuthToken($auth_token);
 	}
 
+	public function login($username, $password)
+	{
+		$ret = $this->call('Token', Connector::POST, array(
+			'grant_type' => 'password',
+			'username'   => $username,
+			'password'   => $password,
+		));
+
+		if (isset($ret['access_token'])) {
+			$this->setAuthToken($ret['access_token']);
+
+			return array('success' => true, 'token' => $ret['access_token']);
+		} else {
+			return array('success' => false, 'message' => $this->getErrorString($ret));
+		}
+	}
+
 	private function call($method_name, $http_method, array $params)
 	{
 		return $this->Connector->call($method_name, $http_method, $params);
