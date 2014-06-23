@@ -1,0 +1,17 @@
+{
+    "name": "brajox/binero",
+    "description": "API Client for Binero.se",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timmy Sjöstedt",
+            "email": "git@iostream.se"
+        }
+    ],
+    "require": {},
+	"autoload": {
+        "psr-4": {
+            "brajox\\Binero\\": "src/"
+        }
+    }
+}
