@@ -1,6 +1,7 @@
 Binero
 ======
 
+[![Latest Unstable Version](https://poser.pugx.org/tsjost/binero/v/unstable)](https://packagist.org/packages/tsjost/binero)
 [![Build Status](https://travis-ci.com/tsjost/Binero-php.svg?branch=master)](https://travis-ci.com/tsjost/Binero-php)
 
 A PHP library to communicate with [Binero](https://www.binero.se)'s (private & undocumented) mobile API.
