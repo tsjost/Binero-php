@@ -13,7 +13,7 @@ use tsjost\Binero;
 $username = 'my@username.se';
 $password = 'my_password';
 
-$Binero = new Binero\Client(new Binero\HttpConnector('https://mobileapi.binero.se/'));
+$Binero = new Binero\Client;
 
 $login = $Binero->login($username, $password);
 if ( ! $login['success']) {

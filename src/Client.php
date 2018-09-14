@@ -5,8 +5,12 @@ class Client
 {
 	private $Connector;
 
-	public function __construct(Connector $Connector)
+	public function __construct(Connector $Connector = null)
 	{
+		if (is_null($Connector)) {
+			$Connector = new HttpConnector('https://mobileapi.binero.se/');
+		}
+
 		$this->Connector = $Connector;
 	}
 
