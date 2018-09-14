@@ -8,7 +8,7 @@ Example
 
 ```php
 <?php
-use brajox\Binero;
+use tsjost\Binero;
 
 $username = 'my@username.se';
 $password = 'my_password';

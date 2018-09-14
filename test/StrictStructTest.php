@@ -1,5 +1,5 @@
 <?php
-use brajox\Binero;
+use tsjost\Binero;
 
 class ConcreteStrictStruct extends Binero\StrictStruct
 {

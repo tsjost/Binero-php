@@ -1,5 +1,5 @@
 <?php
-namespace brajox\Binero;
+namespace tsjost\Binero;
 
 abstract class StrictStruct
 {

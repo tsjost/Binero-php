@@ -1,7 +1,7 @@
 <?php
-namespace brajox\Binero\Test;
+namespace tsjost\Binero\Test;
 
-use brajox\Binero;
+use tsjost\Binero;
 
 class DomainTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,13 +1,13 @@
 <?php
-namespace brajox\Binero\Test;
+namespace tsjost\Binero\Test;
 
-use brajox\Binero;
+use tsjost\Binero;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
 	public function setUp()
 	{
-		$this->ConnectorMock = $this->getMock('brajox\\Binero\\Connector');
+		$this->ConnectorMock = $this->getMock('tsjost\\Binero\\Connector');
 		$this->Client = new Binero\Client($this->ConnectorMock);
 	}
 
@@ -101,17 +101,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
 		$ret = $this->Client->getDomainList();
 
-		$this->assertInstanceOf('brajox\\Binero\\DomainListResponse', $ret);
+		$this->assertInstanceOf('tsjost\\Binero\\DomainListResponse', $ret);
 		$this->assertEquals(4, $ret->getNumResults());
 
 		$Domains = $ret->getDomains();
 		$this->assertCount(4, $Domains);
-		$this->assertInstanceOf('brajox\\Binero\\Domain', $Domains[0]);
+		$this->assertInstanceOf('tsjost\\Binero\\Domain', $Domains[0]);
 		$this->assertEquals('php.se', $Domains[0]->getName());
 	}
 
 	/**
-	 * @expectedException brajox\Binero\BineroException
+	 * @expectedException tsjost\Binero\BineroException
 	 */
 	public function testGetDomainListError()
 	{
