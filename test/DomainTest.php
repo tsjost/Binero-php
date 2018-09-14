@@ -2,8 +2,9 @@
 namespace tsjost\Binero\Test;
 
 use tsjost\Binero;
+use PHPUnit\Framework\TestCase;
 
-class DomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends TestCase
 {
 	private $domain_data = array(
 		'DomainName' => 'testar.se',

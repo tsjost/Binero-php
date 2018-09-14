@@ -1,5 +1,6 @@
 <?php
 use tsjost\Binero;
+use PHPUnit\Framework\TestCase;
 
 class ConcreteStrictStruct extends Binero\StrictStruct
 {
@@ -9,7 +10,7 @@ class ConcreteStrictStruct extends Binero\StrictStruct
 	public $baz;
 }
 
-class StrictStructTest extends PHPUnit_Framework_TestCase
+class StrictStructTest extends TestCase
 {
 	/**
 	 * @expectedException DomainException

@@ -2,12 +2,13 @@
 namespace tsjost\Binero\Test;
 
 use tsjost\Binero;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
 	public function setUp()
 	{
-		$this->ConnectorMock = $this->getMock('tsjost\\Binero\\Connector');
+		$this->ConnectorMock = $this->getMockBuilder('tsjost\\Binero\\Connector')->getMock();
 		$this->Client = new Binero\Client($this->ConnectorMock);
 	}
 

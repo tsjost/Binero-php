@@ -2,8 +2,9 @@
 namespace tsjost\Binero\Test;
 
 use tsjost\Binero;
+use PHPUnit\Framework\TestCase;
 
-class DomainListResponseTest extends \PHPUnit_Framework_TestCase
+class DomainListResponseTest extends TestCase
 {
 	private $response_data = array(
 		'Total' => 1,
