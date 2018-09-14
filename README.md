@@ -1,7 +1,7 @@
 Binero
 ======
 
-A PHP library to communicate with [Binero](https://www.binero.se)'s mobile API.
+A PHP library to communicate with [Binero](https://www.binero.se)'s (private & undocumented) mobile API.
 
 Example
 -------
