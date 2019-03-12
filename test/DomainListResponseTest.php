@@ -19,7 +19,7 @@ class DomainListResponseTest extends TestCase
 		'IsActive' => true,
 	);
 
-	public function setUp()
+	public function setUp(): void
 	{
 		$Domain = new Binero\Domain($this->domain_data);
 		$this->response_data['Items'][] = $Domain;

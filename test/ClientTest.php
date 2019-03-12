@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->ConnectorMock = $this->getMockBuilder('tsjost\\Binero\\Connector')->getMock();
 		$this->Client = new Binero\Client($this->ConnectorMock);
@@ -111,11 +111,10 @@ class ClientTest extends TestCase
 		$this->assertEquals('php.se', $Domains[0]->getName());
 	}
 
-	/**
-	 * @expectedException tsjost\Binero\BineroException
-	 */
 	public function testGetDomainListError()
 	{
+		$this->expectException(Binero\BineroException::class);
+
 		$this->ConnectorMock->expects($this->once())
 			->method('call')
 			->will($this->returnValue(array(

@@ -13,7 +13,7 @@ class DomainTest extends TestCase
 		'IsActive' => true,
 	);
 
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->Domain = new Binero\Domain($this->domain_data);
 	}

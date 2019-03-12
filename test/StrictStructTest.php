@@ -12,11 +12,10 @@ class ConcreteStrictStruct extends Binero\StrictStruct
 
 class StrictStructTest extends TestCase
 {
-	/**
-	 * @expectedException DomainException
-	 */
 	public function testUndeclared()
 	{
+		$this->expectException(DomainException::class);
+
 		$strictStruct = new \ConcreteStrictStruct;
 
 		$strictStruct->undeclared = "property doesn't exist";
@@ -31,11 +30,10 @@ class StrictStructTest extends TestCase
 		$this->assertTrue(true);
 	}
 
-	/**
-	 * @expectedException DomainException
-	 */
 	public function testPassedUndeclared()
 	{
+		$this->expectException(DomainException::class);
+
 		$values = array(
 			'also_undeclared' => "that doesn't exist",
 		);
