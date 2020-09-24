@@ -16,7 +16,7 @@ class HttpConnector implements Connector
 		$this->auth_token = $auth_token;
 	}
 
-	public function call($method_name, $http_method, array $params)
+	public function request($method_name, $http_method, array $params)
 	{
 		$full_uri = $this->api_endpoint . $method_name;
 		$params_string = http_build_query($params);

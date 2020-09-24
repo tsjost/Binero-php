@@ -1,4 +1,5 @@
 <?php
+
 namespace tsjost\Binero;
 
 class Client
@@ -21,7 +22,7 @@ class Client
 
 	public function login($username, $password)
 	{
-		$ret = $this->call('Token', Connector::POST, array(
+		$ret = $this->request('Token', Connector::POST, array(
 			'grant_type' => 'password',
 			'username'   => $username,
 			'password'   => $password,
@@ -38,12 +39,12 @@ class Client
 
 	public function getDomainList($search = '', $page = 1)
 	{
-		$ret = $this->call('api/Domains/GetDomainList', Connector::GET, array(
+		$ret = $this->request('api/Domains/GetDomainList', Connector::GET, array(
 			'search' => $search,
 			'page'   => $page,
 		));
 
-		if ( ! isset($ret['Items'])) {
+		if (!isset($ret['Items'])) {
 			throw new BineroException($this->getErrorString($ret));
 		}
 
@@ -54,24 +55,23 @@ class Client
 		return ClassCaster::Cast($ret, 'DomainListResponse');
 	}
 
-	private function call($method_name, $http_method, array $params)
+	protected function request($method_name, $http_method, array $params)
 	{
-		return $this->Connector->call($method_name, $http_method, $params);
+		return $this->Connector->request($method_name, $http_method, $params);
 	}
-
-	private function getErrorString($json_ret)
+	protected function getErrorString($json_ret)
 	{
 		$error_msg = 'Unknown';
 
 		if (isset($json_ret['error'])) {
 			if (isset($json_ret['error_description'])) {
-				$error_msg = $json_ret['error_description'] .' ('. $json_ret['error'] .')';
+				$error_msg = $json_ret['error_description'] . ' (' . $json_ret['error'] . ')';
 			} else {
 				$error_msg = $json_ret['error'];
 			}
 		} else if (isset($json_ret['Message'])) {
 			if (isset($json_ret['MessageDetail'])) {
-				$error_msg = $json_ret['MessageDetail'] .' ('. $json_ret['Message'] .')';
+				$error_msg = $json_ret['MessageDetail'] . ' (' . $json_ret['Message'] . ')';
 			} else {
 				$error_msg = $json_ret['Message'];
 			}

@@ -1,4 +1,5 @@
 <?php
+
 namespace tsjost\Binero;
 
 interface Connector
@@ -7,5 +8,5 @@ interface Connector
 	const POST = 2;
 
 	public function setAuthToken($auth_token);
-	public function call($method_name, $http_method, array $arguments);
+	public function request($method_name, $http_method, array $arguments);
 }
